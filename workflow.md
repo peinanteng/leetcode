@@ -1,4 +1,4 @@
-These are the steps I need to take to update my repo.
+These are the steps I need to take to update my repository.
 
 - Create a file or update an existing file
 
