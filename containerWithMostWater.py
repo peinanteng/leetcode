@@ -4,16 +4,14 @@ class Solution(object):
         :type height: List[int]
         :rtype: int
         """
+        if len(height) <= 1:
+            return res
         leftp, rightp = 0, len(height) - 1
-        res = 0
-        while leftp + 1 < rightp:
-            curwater = min(height[leftp], height[rightp]) * (rightp - leftp)
-            res = max(curwater, res)
+
+        while leftp < rightp:
+            res = max(res, min(height[leftp], height[rightp]) * (rightp - leftp))
             if height[leftp] <= height[rightp]:
                 leftp += 1
             else:
                 rightp -= 1
-        if leftp < rightp:
-            curwater = min(height[leftp], height[rightp]) * (rightp - leftp)
-            res = max(curwater, res)
         return res
