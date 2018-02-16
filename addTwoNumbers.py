@@ -8,13 +8,20 @@ class Solution(object):
         dummy = cur = ListNode(0)
         carry = 0
         while l1 or l2 or carry:
+            cursum = 0
             if l1:
-                carry += l1.val
+                cursum += l1.val
                 l1 = l1.next
             if l2:
-                carry += l2.val
+                cursum += l2.val
                 l2 = l2.next
-            cur.next = ListNode(carry % 10)
-            carry = carry // 10
+            if carry:
+                cursum += carry
+                carry 0
+            if cursum >= 10:
+                cursum -= 10
+                carry = 1
+            cur.next = ListNode(cursum)
             cur = cur.next
+        cur.next = None
         return dummy.next
