@@ -7,15 +7,12 @@ class Solution(object):
         flag = 1
         if x < 0:
             flag = -1
-            x = abs(x)
-        stack = []
+        x = abs(x)
+        res = 0
         while x > 0:
-            digit = x % 10
-            stack.append(digit)
-            x = x / 10
-        while stack:
-            digit = stack.pop(0)
-            x = x * 10 + digit
-            if x > 2 ** 31:
+            cur_digit = x % 10
+            res = res * 10 + cur_digit
+            x = x // 10
+            if res > 2 ** 31:
                 return 0
-        return x * flag
+        return res * flag
