@@ -19,6 +19,3 @@ class Solution(object):
                 step = -1
             index += step
         return ''.join(L)
-        
-        if numRows == 1 or numRows >= len(s):
-            return s
