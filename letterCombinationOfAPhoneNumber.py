@@ -14,8 +14,7 @@ class Solution(object):
                 curres = []
                 for char in PhoneNum[int(num)]:
                     for reschar in res:
-                        reschar += char
-                        curres.append(reschar)
+                        curres.append(reschar + char)
                 res = curres
         return res
         
