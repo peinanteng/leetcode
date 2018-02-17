@@ -11,8 +11,8 @@ class Solution(object):
         :type l2: ListNode
         :rtype: ListNode
         """
-        dummy = ListNode(0)
-        cur = dummy
+        dummy = cur = ListNode(0)
+        
         while l1 or l2:
             if not l1:
                 cur.next = l2
@@ -21,11 +21,11 @@ class Solution(object):
                 cur.next = l1
                 break
             if l1.val <= l2.val:
-                cur.next = l1
+                cur.next = ListNode(l1.val)
                 l1 = l1.next
                 cur = cur.next
             else:
-                cur.next = l2
+                cur.next = ListNode(l2.val)
                 l2 = l2.next
                 cur = cur.next
         return dummy.next

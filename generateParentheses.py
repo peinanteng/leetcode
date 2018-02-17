@@ -7,11 +7,10 @@ class Solution(object):
         self.res = []
         self.helper(n, 0, 0, '')
         return self.res
-    def helper(self, n, left, right, curres):
-        if right >= n and left >= n:
+    def helper(self, n, leftn, rightn, curres):
+        if leftn == n and rightn == n:
             self.res.append(curres)
-        if left < n:
-            self.helper(n, left + 1, right, curres + '(')
-        if right < n and right < left:
-            self.helper(n, left, right + 1, curres + ')')
-            
+        if leftn < n:
+            self.helper(n, leftn + 1, rightn, curres + '(')
+        if rightn < leftn:
+            self.helper(n, leftn, rightn + 1, curres + ')')
