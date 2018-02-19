@@ -10,20 +10,21 @@ class Solution(object):
         :type head: ListNode
         :rtype: ListNode
         """
-        if head is None or head.next == None:
+        if head == None or head.next == None:
             return head
-        dummy = ListNode(0)
-        curNode1, curNode2 = head, head.next
-        pre = dummy
-        while curNode2:
-            pre.next = curNode2
-            nextNode = curNode2.next
-            curNode2.next = curNode1
-            curNode1.next = nextNode
-            if nextNode:
-                pre = curNode1
-                curNode1 = nextNode
-                curNode2 = nextNode.next    
+        dummy = pre = ListNode(0)
+        cur = head
+        while cur:
+            if cur.next == None:
+                pre.next = ListNode(cur.val)
+                pre = pre.next
+                pre.next = None
+                cur = cur.next
             else:
-                break
+                pre.next = ListNode(cur.next.val)
+                pre = pre.next
+                pre.next = ListNode(cur.val)
+                pre = pre.next
+                cur = cur.next.next
+        
         return dummy.next
