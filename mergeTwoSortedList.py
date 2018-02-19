@@ -11,22 +11,27 @@ class Solution(object):
         :type l2: ListNode
         :rtype: ListNode
         """
-        dummy = cur = ListNode(0)
-        
+        dummy = preNode = ListNode(0)
         while l1 or l2:
             if not l1:
-                cur.next = l2
+                preNode.next = l2
                 break
             if not l2:
-                cur.next = l1
+                preNode.next = l1
                 break
             if l1.val <= l2.val:
-                cur.next = ListNode(l1.val)
-                l1 = l1.next
-                cur = cur.next
+                curNode = l1
+                nextNode = curNode.next
+                curNode.next = None
+                preNode.next = curNode
+                preNode = preNode.next
+                l1 = nextNode
             else:
-                cur.next = ListNode(l2.val)
-                l2 = l2.next
-                cur = cur.next
+                curNode = l2
+                nextNode = curNode.next
+                curNode.next = None
+                preNode.next = curNode
+                preNode = preNode.next
+                l2 = nextNode
         return dummy.next
-        
+            
