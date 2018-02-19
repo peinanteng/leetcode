@@ -6,62 +6,66 @@
 
 class Solution(object):
     def mergeKLists(self, lists):
+        dummy = preNode = ListNode(0)
+        preNode.next = None
         self.heap = []
         self.MAX = 2 ** 31
-        self.MIN = -2 ** 31 - 1
-        if not lists:
-            return
-        for list in lists:
-            if list:
-                self.heap.append(list)
-
+        for node in lists:
+            if node:
+                self.heap.append(node)
         if self.heap:
             self.heapify()
-        dummy = pre = ListNode(0)
-        dummy.next = None
         while self.heap:
-            curNode = self.heapPop()
-            pre.next = ListNode(curNode.val)
-            if curNode.next:
-                self.heapAdd(curNode.next)
-            pre = pre.next
+            node = self.heapPop()
+            nextNode = node.next
+            if nextNode:
+                self.heapAdd(nextNode)
+            node.next = None
+            preNode.next = node
+            preNode = preNode.next
         return dummy.next
-
+    
     def heapify(self):
         startIndex = len(self.heap) // 2
-        for i in range(startIndex, -1, -1):
-            self.bubbleDown(i)
-
+        for index in range(startIndex, -1, -1):
+            self.bubbleDown(index)
     def heapPop(self):
-            self.heap[0], self.heap[-1] = self.heap[-1], self.heap[0]
-            node = self.heap.pop()
-            self.bubbleDown(0)
-            return node
+        heap = self.heap
+        heap[0], heap[-1] = heap[-1], heap[0]
+        node = heap.pop()
+        self.bubbleDown(0)
+        return node
     def heapAdd(self, node):
-            self.heap.append(node)
-            self.bubbleUP(len(self.heap) - 1)
+        heap = self.heap
+        heap.append(node)
+        self.bubbleUp(len(heap) - 1)
     def bubbleDown(self, index):
-        while index < len(self.heap):
-            curVal = self.heap[index].val
+        heap = self.heap
+        while index < len(heap):
+            curVal = heap[index].val
             left, right = index * 2 + 1, index * 2 + 2
-            leftVal = self.heap[left].val if left < len(self.heap) else self.MAX + 1
-            rightVal = self.heap[right].val if right < len(self.heap) else self.MAX + 1
-
-            if leftVal >= curVal and rightVal >= curVal:
+            leftVal = heap[left].val if left < len(heap) else self.MAX + 1
+            rightVal = heap[right].val if right < len(heap) else self.MAX + 1
+            if curVal < leftVal and curVal < rightVal:
                 break
             if leftVal >= rightVal:
-                self.heap[right], self.heap[index] = self.heap[index], self.heap[right]
+                heap[index], heap[right] = heap[right], heap[index]
                 index = right
             else:
-                self.heap[left], self.heap[index] = self.heap[index], self.heap[left]
+                heap[index], heap[left] = heap[left], heap[index]
                 index = left
-    def bubbleUP(self, index):
+    
+    def bubbleUp(self, index):
+        heap = self.heap 
         while index > 0:
+            curVal = heap[index].val
             paren = (index - 1) // 2
-            curVal = self.heap[index].val
-            parenVal = self.heap[paren].val
-            if curVal >= parenVal:
-                break
-            else:
-                self.heap[index], self.heap[paren] = self.heap[paren], self.heap[index]
+            parenVal = heap[paren].val
+            if parenVal > curVal:
+                heap[index], heap[paren] = heap[paren], heap[index]
                 index = paren
+            else:
+                break
+            
+            
+        
