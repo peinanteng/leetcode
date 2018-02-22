@@ -10,14 +10,14 @@ class Solution(object):
         candidates.sort()
         self.helper(candidates, target, [], 0)
         return self.res
-    def helper(self, nums, target, curNums, startIndex):
-        if target < 0:
+    def helper(self, nums, target, curNums, index):
+        if target < 0 or index >= len(nums):
             return
         if target == 0:
             self.res.append(curNums)
             return
-        for i in range(startIndex, len(nums)):
-            self.helper(nums, target - nums[i], curNums + [nums[i]], i)
+        self.helper(nums, target - nums[index], curNums + [nums[index]], index)
+        self.helper(nums, target, curNums, index + 1)
                 
             
         
