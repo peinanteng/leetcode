@@ -5,32 +5,38 @@ class Solution(object):
         :type words: List[str]
         :rtype: List[int]
         """
+        rsummary = {}
         res = []
-        if not s or not words or not words[0]:
-            return []
-        summary = {}
+        countWords = 0
         for word in words:
             summary[word] = summary.get(word, 0) + 1
-        lenwords = len(words) * len(words[0])
-        lenword = len(words[0])
-        i = 0
-        while i <= len(s) - lenwords:
-            flag = self.helper(s[i : i + lenwords], summary, lenword)
-            if flag == 1:
-                res.append(i)
-            i += 1
+            countWords += 1
+        count = len(summary)
+        start = 0
+        wordlen = len(words[0])
+        wordslen = len(words[0]) * countWords
+        while start <= len(s) - wordslen:
+            if s[start: start + wordlen] in words:
+                slidingWindow = {}
+                slidingCount = 0
+                tempstart = start
+                while slidingCount >= 0 and slidingCount < count:
+                    word = s[tempstart: tempstart + wordlen]
+                    if word in summary:
+                        slidingWindow[word] = slidingWindow.get(word, 0) + 1
+                        if slidingWindow[word] == summary[word]:
+                            slidingCount += 1
+                            tempstart += wordlen
+                        elif slidingWindow[word] < summary[word]:
+                            tempstart += wordlen
+                        elif slidingWindow[word] > summary[word]:
+                            slidingCount = -1
+                    else:
+                        slidingCount = -1
+                if slidingCount == count:
+                    res.append(start)
+            start += 1
+
         return res
-    def helper(self, s, summary, lenword):
-        newsummary = {}
-        i = 0
-        while i < len(s):
-            if s[i :i + lenword] not in summary:
-                return -1
-            newsummary[s[i: i + lenword]] = newsummary.get(s[i: i + lenword], 0) + 1
-            i += lenword
-        for word in newsummary:
-            if newsummary[word] != summary[word]:
-                return -1
-        return 1
         
 
