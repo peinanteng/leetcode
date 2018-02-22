@@ -6,16 +6,18 @@ class Solution(object):
         """
         if len(s) == 0:
             return 0
-        start = 0
-        curlen = 1
-        maxlen = 1
-        for i in range(1, len(s)):
-            if s[i] not in s[start : i]:
-                curlen += 1   
+        summary = {}
+        left = 0
+        right = 0
+        res = 0
+        while right < len(s):
+            if s[right] not in summary:
+                summary[s[right]] = right
+                right += 1
             else:
-                while s[start] != s[i]:
-                    start += 1
-                start += 1
-                curlen = i - start + 1
-            maxlen = max(maxlen, curlen)
-        return maxlen
+                res = max(res, right - left)
+                left = max(left, summary[s[right]] + 1)
+                summary[s[right]] = right
+                right += 1
+        res = max(res, right - left)
+        return res
