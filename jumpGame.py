@@ -4,14 +4,13 @@ class Solution(object):
         :type nums: List[int]
         :rtype: bool
         """
-        if len(nums) <= 1:
-            return True
-        if len(nums) == 2:
-            return True if nums[-2] >= 1 else False
-        if nums[0] == 0:
-            return False
-        for i in range(1, nums[0] + 1):
-            if self.canJump(nums[i:]) == True:
-                return True
-        return False
-        
+
+        jump = 1
+        for index in range(len(nums) - 2, -1, -1):
+            if index == 0 and nums[index] < jump:
+                return False
+            if nums[index] >= jump:
+                jump = 1
+            elif nums[index] < jump:
+                jump += 1
+        return True  
