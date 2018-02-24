@@ -1,3 +1,3 @@
-def addTwoNum(m, n):
-    return m + n
+def addTwoNumbers(x, y):
+    return x + y
 
