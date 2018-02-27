@@ -14,9 +14,6 @@ class Solution(object):
             curNode = curNode.next
         
         target = count - k % count
-        if target == 0:
-            return head
-        
         count = 1
         preNode, curNode = None, head
         while curNode and count <= target:
