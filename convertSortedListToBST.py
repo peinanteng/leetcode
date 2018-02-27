@@ -19,26 +19,23 @@ class Solution:
         """
         if not head:
             return None
-        count = 0
-        curNode = head
-        while curNode:
-            count += 1
-            curNode = curNode.next
-        target = (count) // 2
-        count = 0
+        preNode, slow, fast = None, head, head
+        while fast and fast.next:
+            preNode = slow
+            slow = slow.next
+            fast = fast.next.next
+        if preNode:
+            preNode.next = None
+
         dummy1 = ListNode(0)
         dummy2 = ListNode(0)
-        dummy1.next = head
-        preNode, curNode = dummy1, head
-        while count < target:
-            count += 1
-            preNode, curNode = curNode, curNode.next
-        preNode.next = None
-        if curNode.next:
-            dummy2.next = curNode.next
-        root = TreeNode(curNode.val)
+        if slow != head:
+            dummy1.next = head
+        if slow.next:
+            dummy2.next = slow.next
+        
+        root = TreeNode(slow.val)
         root.left = self.sortedListToBST(dummy1.next)
         root.right = self.sortedListToBST(dummy2.next)
         return root
-            
        

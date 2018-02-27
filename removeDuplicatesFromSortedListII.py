@@ -10,10 +10,12 @@ class Solution:
         :type head: ListNode
         :rtype: ListNode
         """
-        dummy = ListNode(2 ** 31 + 1)
+        if not head:
+            return head
+        dummy = ListNode(head.val - 1)
         preNode = dummy
         
-        preVal = 2 ** 31 + 1
+        preVal = head.val - 1
         curNode = head
         while curNode:
             curVal = curNode.val
@@ -26,4 +28,4 @@ class Solution:
                     preNode = curNode
                 curNode = curNode.next
         preNode.next = None
-        
+        return dummy.next

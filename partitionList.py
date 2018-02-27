@@ -11,11 +11,9 @@ class Solution:
         :type x: int
         :rtype: ListNode
         """
-        dummy1 = ListNode(0)
-        dummy2 = ListNode(0)
+        cur1 = dummy1 = ListNode(0)
+        cur2 = dummy2 = ListNode(0)
         cur = head
-        cur1 = dummy1
-        cur2 = dummy2
         while cur:
             if cur.val < x:
                 cur1.next = cur

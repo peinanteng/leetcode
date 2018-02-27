@@ -12,14 +12,14 @@ class Solution:
         """
         if not head:
             return head
-        preNode = head
-        while preNode.next:
-            if preNode.next.val == preNode.val:
-                curNode = preNode.next
-                preNode.next = preNode.next.next
-                curNode.next = None
+        curNode = head
+        while curNode.next:
+            if curNode.next.val == curNode.val:
+                nextNode = curNode.next
+                curNode.next = curNode.next.next
+                nextNode.next = None
             else:
-                preNode = preNode.next
+                curNode = curNode.next
                 
         return head
             
