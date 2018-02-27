@@ -5,9 +5,9 @@ class Solution(object):
         :type divisor: int
         :rtype: int
         """
-        flag = 1
-        if dividend < 0:
-            flag = -1
+        # initilise flag as 1
+        flag = -1 if dividend < 0 else 1
+
         if divisor < 0:
             flag *= -1
         dividend = abs(dividend)
