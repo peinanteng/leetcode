@@ -1,9 +1,3 @@
-# Definition for singly-linked list.
-# class ListNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
-
 class Solution(object):
     def rotateRight(self, head, k):
         """
@@ -14,31 +8,30 @@ class Solution(object):
         if not head or k == 0:
             return head
         count = 0
-        cur = head
-        while cur:
+        curNode = head
+        while curNode:
             count += 1
-            cur = cur.next
-
-        if count == k or count == 1:
-            return head
-        elif count < k:
-            k = k % count
-        target = count - k
+            curNode = curNode.next
         
-        dummy = pre = ListNode(0)
-        cur = head
+        target = count - k % count
+        if target == 0:
+            return head
+        
         count = 1
-        while count <= target:
-            pre, cur = cur, cur.next
+        preNode, curNode = None, head
+        while curNode and count <= target:
             count += 1
-        count = 1
-        endNode = cur
-        while endNode and count < k:
-            endNode = endNode.next
-            count += 1
-        pre.next = None
-        dummy.next = cur
-        endNode.next = head
+            preNode, curNode = curNode, curNode.next
+        preNode.next = None
+        
+        dummy = ListNode(0)
+        dummy.next = curNode
+        
+        preNode, curNode = dummy, dummy.next
+        while curNode:
+            preNode, curNode = curNode, curNode.next
+        
+        preNode.next = head
         return dummy.next
         
         
