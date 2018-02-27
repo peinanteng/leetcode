@@ -4,6 +4,8 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
+        if not nums:
+            return 0
         cursum = nums[0]
         result = nums[0]
         for num in nums[1:]:
