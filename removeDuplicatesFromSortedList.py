@@ -10,7 +10,7 @@ class Solution:
         :type head: ListNode
         :rtype: ListNode
         """
-        if not head:
+        if not head or not head.next:
             return head
         curNode = head
         while curNode.next:

@@ -11,11 +11,10 @@ class Solution:
         :rtype: ListNode
         """
         if not head:
-            return head
-        dummy = ListNode(head.val - 1)
-        preNode = dummy
-        
+            return 
         preVal = head.val - 1
+        dummy = preNode = ListNode(preVal)
+    
         curNode = head
         while curNode:
             curVal = curNode.val
