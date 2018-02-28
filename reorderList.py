@@ -23,7 +23,7 @@ class Solution(object):
                 preNode, curNode = curNode, nextNode
             node1, node2 = head, preNode
             while node2:
-                nextnode1= node1.next
+                nextnode1 = node1.next
                 nextnode2 = node2.next
                 node1.next = node2
                 node2.next = nextnode1
