@@ -11,11 +11,8 @@ class Solution:
         :type root: TreeNode
         :rtype: TreeNode
         """
-        if not root:
-            return
         curNode = root
-        leftNode = None
-        rightNode = None
+        leftNode = rightNode = None
         while curNode:
             newLeft = curNode.left
             newRight = curNode.right
