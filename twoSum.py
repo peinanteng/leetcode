@@ -1,5 +1,5 @@
 class Solution:
-	# this function returns the index of two integer whose sum equal to target
+# this function returns the index of two integer whose sum equal to target
     def twoSum(self, nums, target):
         for i in range(len(nums)):
             j = i + 1
