@@ -4,15 +4,15 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        soldierFlag = 0
-        soldierNum = 0
-        for num in nums:
-            if num == soldierFlag:
-                soldierNum += 1
+        curNum = nums[0]
+        count = 0
+        for num in nums[1:]:
+            if num == curNum:
+                count += 1
             else:
-                if soldierNum == 0:
-                    soldierFlag = num
-                    soldierNum += 1
+                if count == 0:
+                    curNum = num
+                    count += 1
                 else:
-                    soldierNum -= 1
-        return soldierFlag
+                    count -= 1
+        return curNum
