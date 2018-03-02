@@ -9,8 +9,8 @@ class Solution(object):
         while left < right:
             curArea = min(height[left], height[right]) * (right - left)
             maxArea = max(maxArea, curArea)
-            newLeft = left + 1 if height[left] <= height[right] else 0
-            newRight = right - 1 if height[left] > height[right] else 0
+            newLeft = left + 1 if height[left] <= height[right] else left
+            newRight = right - 1 if height[left] > height[right] else right
             left, right = newLeft, newRight
         return maxArea
     
