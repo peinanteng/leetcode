@@ -12,6 +12,7 @@ class Solution:
         :rtype: int
         """
         return self.helper(root)[2]
+        
     def helper(self, root):
         if not root:
             return [0, 0, - 2**31 - 1]
@@ -20,6 +21,5 @@ class Solution:
         newLeft = max(leftVal[0], leftVal[1], 0) + root.val
         newRight = max(rightVal[0], rightVal[1], 0) + root.val
         newPath = max(leftVal[2], rightVal[2], newLeft + newRight - root.val, newLeft, newRight, root.val)
-        print(newLeft, newRight, newPath)
         return [newLeft, newRight, newPath]
         
