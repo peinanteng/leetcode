@@ -16,6 +16,7 @@ class Solution(object):
         if root:
             self.helper(root, [], sum)
         return self.res
+        
     def helper(self, node, path, target):
         if not node.left and not node.right:
             path.append(node.val)
