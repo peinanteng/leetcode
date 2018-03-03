@@ -20,7 +20,10 @@ class Solution(object):
             return None
         leftValue = self.helper(root.left)
         rightValue = self.helper(root.right)
-        if leftValue == rightValue == None or leftValue == rightValue == root.val or (leftValue == None and rightValue == root.val) or (rightValue == None and leftValue == root.val):
+        if leftValue == rightValue == None \
+        or leftValue == rightValue == root.val \
+        or (leftValue == None and rightValue == root.val) \
+        or (rightValue == None and leftValue == root.val):
             self.ans += 1
             return root.val
-        return 2 **31 + 1
+        return 2 ** 31 + 1
