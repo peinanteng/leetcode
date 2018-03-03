@@ -5,6 +5,7 @@ class Solution(object):
         :rtype: List[int]
         """
         res = []
+        #Initialise the flag value to any number
         queenFlag, kingFlag = 99, 88
         queenNum, kingNum = 0, 0
         for num in nums:
