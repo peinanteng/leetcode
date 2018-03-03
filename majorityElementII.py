@@ -5,7 +5,7 @@ class Solution(object):
         :rtype: List[int]
         """
         res = []
-        queenFlag, kingFlag = 88, 99
+        queenFlag, kingFlag = 99, 88
         queenNum, kingNum = 0, 0
         for num in nums:
             if num == queenFlag:
