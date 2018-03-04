@@ -15,11 +15,11 @@ class Solution(object):
         ans = 0
         while queue:
             ans = queue[0].val
-            newqueue = []
+            newQueue = []
             for node in queue:
                 if node.left:
-                    newqueue.append(node.left)
+                    newQueue.append(node.left)
                 if node.right:
-                    newqueue.append(node.right)
-            queue = newqueue
+                    newQueue.append(node.right)
+            queue = newQueue
         return ans
