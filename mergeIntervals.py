@@ -15,7 +15,7 @@ class Solution(object):
         # sort the interval List by start
         intervals.sort(key=lambda interval: interval.start)
         res = [intervals[0]]
-        for interval in intervals:
+        for interval in intervals[1:]:
             if interval.start <= res[-1].end:
                 res[-1].end = max(interval.end, res[-1].end)
             else:
