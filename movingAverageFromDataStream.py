@@ -21,6 +21,5 @@ class MovingAverage:
         self.sums[index] = newSum
         if self.count <= self.size:
             return (newSum - oldSum) / self.count
-        else:
-            return (newSum - oldSum) / self.size
+        return (newSum - oldSum) / self.size
         
