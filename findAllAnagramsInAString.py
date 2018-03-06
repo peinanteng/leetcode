@@ -5,19 +5,12 @@ class Solution(object):
         :type p: str
         :rtype: List[int]
         """
-        summary = {'a': 0, 'b': 1, 'c': 2, 
-                   'd': 3, 'e': 4, 'f': 5, 
-                   'g': 6, 'h': 7, 'i': 8, 
-                   'j': 9, 'k': 10, 'l': 11,
-                   'm': 12, 'n': 13, 'o': 14,
-                   'p': 15, 'q': 16, 'r': 17,
-                   's': 18, 't': 19, 'u': 20,
-                   'v': 21, 'w': 22, 'x': 23,
-                   'y': 24, 'z': 25
-                  }
         res = []
         if len(p) == 0 or len(s) == 0 or len(p) > len(s):
             return res
+        summary = {};
+        for index in range(ord('a'), ord('z') + 1):
+            summary[chr(index)] = index - ord('a')
         freP = [0] * 26
         freQ = [0] * 26
         for char in p:
@@ -34,9 +27,9 @@ class Solution(object):
             if self.compare(freP, freQ):
                 res.append(index)
         return res
+    
     def compare(self, nums1, nums2):
-        for i in range(len(nums1)):
-            if nums1[i] != nums2[i]:
+        for a, b in zip(nums1, nums2):
+            if a != b:
                 return False
         return True
-            
