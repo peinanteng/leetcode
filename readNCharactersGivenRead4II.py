@@ -1,7 +1,8 @@
 class Solution(object):
     def __init__(self):
         self.buf4 = [0] * 4
-        self.i4, self.n4 = 0, 0
+        self.i4 = self.n4 = 0
+
     def read(self, buf, n):
         """
         :type buf: Destination buffer (List[str])
