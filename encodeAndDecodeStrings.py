@@ -7,8 +7,8 @@ class Codec:
         :rtype: str
         """
         string = ''
-        for str in strs:
-            for char in str:
+        for s in strs:
+            for char in s:
                 if char == ":":
                     string += "::"
                 elif char == ";":
@@ -18,7 +18,6 @@ class Codec:
             string += ":;"
         return string
         
-
     def decode(self, s):
         """Decodes a single string to a list of strings.
         
@@ -28,13 +27,13 @@ class Codec:
         strings = []
         i, curString = 0, ""
         while i < len(s) - 1:
-            if s[i] == ":" and s[i + 1] == ":":
+            if s[i : i + 2] == "::":
                 curString += ":"
                 i += 2
-            elif s[i] == ";" and s[i + 1] == ";":
+            elif s[i : i + 2] == ";;":
                 curString += ";"
                 i += 2
-            elif s[i] == ":" and s[i + 1] == ";":
+            elif s[i : i + 2] == ":;":
                 strings.append(curString)
                 curString = ""
                 i += 2
