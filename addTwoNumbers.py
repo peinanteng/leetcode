@@ -21,7 +21,7 @@ class Solution(object):
                 cursum += carry
                 carry = 0
             if cursum >= 10:
-                cursum -= 10
+                cursum %= 10
                 carry = 1
             # create a new node to record the digit
             cur.next = ListNode(cursum)
