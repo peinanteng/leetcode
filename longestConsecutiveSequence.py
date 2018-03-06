@@ -7,8 +7,7 @@ class Solution(object):
         summary = {}
         res = 0
         for num in nums:
-            if num not in summary:
-                summary[num] = 1
+            summary[num] = 1
         for num in summary:
             if summary[num] == 0:
                 continue
