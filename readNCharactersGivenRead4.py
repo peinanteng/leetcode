@@ -10,7 +10,7 @@ class Solution(object):
         :type n: Maximum number of characters to read (int)
         :rtype: The number of characters read (int)
         """
-        i, i4, n4 = 0, 0, 0
+        i = i4 = n4 = 0
         buf4 = [0] * 4
         while i < n:
             if i4 == n4:
