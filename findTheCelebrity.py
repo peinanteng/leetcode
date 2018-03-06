@@ -30,7 +30,6 @@ class Solution(object):
         # return the celebrity if it exist, else -1
         if flag == 1:
             return ans
-        else:
-            return -1
+        return -1
                 
         
