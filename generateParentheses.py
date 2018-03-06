@@ -8,7 +8,7 @@ class Solution(object):
         self.helper(n, 0, 0, '')
         return self.res
     def helper(self, n, leftn, rightn, curres):
-        if leftn == n and rightn == n:
+        if leftn == rightn == n:
             self.res.append(curres)
         if leftn < n:
             self.helper(n, leftn + 1, rightn, curres + '(')

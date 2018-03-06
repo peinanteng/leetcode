@@ -10,7 +10,7 @@ class Solution(object):
             return '1'
         # find the previous result
         prestr = self.countAndSay(n - 1)
-        # initilise current char and count
+        # initialise current char and count
         cur_char = prestr[0]
         count = 1
         ans = ''
