@@ -4,13 +4,14 @@ class Solution(object):
         :type n: int
         :rtype: List[str]
         """
-        self.res = []
-        self.helper(n, 0, 0, '')
-        return self.res
-    def helper(self, n, leftn, rightn, curres):
-        if leftn == rightn == n:
-            self.res.append(curres)
-        if leftn < n:
-            self.helper(n, leftn + 1, rightn, curres + '(')
-        if rightn < leftn:
-            self.helper(n, leftn, rightn + 1, curres + ')')
+        res = []
+        self.helper(n, n, "", res)
+        return res
+    
+    def helper(self, left, right, cur, res):
+        if left == 0 and right == 0:
+            res.append(cur)
+        if left:
+            self.helper(left - 1, right, cur + '(', res)
+        if right > left:
+            self.helper(left, right - 1, cur + ')', res)
