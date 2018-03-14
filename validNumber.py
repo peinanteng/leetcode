@@ -8,6 +8,8 @@ class Solution(object):
         flag = 0
         #remove the spaces
         s = s.strip()
+        if s == '':
+            return False
         # if there is a '+' or '-'
         if i < len(s) and (s[i] == '+' or s[i] == '-'):
             i += 1
