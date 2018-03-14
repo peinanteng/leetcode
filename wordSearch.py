@@ -5,32 +5,24 @@ class Solution(object):
         :type word: str
         :rtype: bool
         """
-        m = len(board)
-        n = len(board[0])
-        for i in range(m):
-            for j in range(n):
-                if board[i][j] == word[0]:
-                    table = [[False] * len(board[0]) for _ in range(len(board))]
-                    if self.helper(board, word, table, "", i, j):
-                        return True
+        if not board:
+            return False
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                if self.dfs(board, word, i, j):
+                    return True
         return False
-
-    def helper(self, board, word, table, curStr, x, y):
-        table[x][y] = True
-        curStr += board[x][y]
-        if curStr == word:
+        
+    def dfs(self, board, word, i, j):
+        if len(word) == 0:
             return True
-        if x < len(board) - 1 and table[x + 1][y] == False and board[x + 1][y] == word[len(curStr)]:
-            if self.helper(board, word, table, curStr, x + 1, y):
-                return True
-        if y < len(board[0]) - 1 and table[x][y + 1] == False and board[x][y + 1] == word[len(curStr)]:
-            if self.helper(board, word, table, curStr, x, y + 1):
-                return True
-        if x > 0 and table[x - 1][y] == False and board[x - 1][y] == word[len(curStr)]:
-            if self.helper(board, word, table, curStr, x - 1, y):
-                return True
-        if y > 0 and table[x][y - 1] == False and board[x][y - 1] == word[len(curStr)]:
-            if self.helper(board, word, table, curStr, x, y - 1):
-                return True
-        table[x][y] = False
-        return False
+        if i <  0 or i >= len(board) or j < 0 or j >= len(board[0]) or board[i][j] != word[0]:
+            return False
+        tpm = board[i][j]
+        board[i][j] = '#'
+        flag = 0
+        if self.dfs(board, word[1:], i + 1, j) or self.dfs(board, word[1:], i - 1, j) \
+        or self.dfs(board, word[1:], i, j + 1) or self.dfs(board, word[1:], i, j - 1):
+            flag = 1
+        board[i][j] = tpm
+        return flag == 1
