@@ -5,9 +5,6 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        return self.quickSelect(nums, k)
-    
-    def quickSelect(self, nums, k):
         left, right = -1, len(nums)
         pivot = nums[right // 2]
         i = 0
@@ -22,8 +19,7 @@ class Solution(object):
             else:
                 i += 1
         if left >= k - 1:
-            return self.quickSelect(nums[:left + 1], k)
+            return self.findKthLargest(nums[:left + 1], k)
         elif right <=  k - 1:
-            return self.quickSelect(nums[right:], k - right)
-        else:
-            return nums[k - 1]
+            return self.findKthLargest(nums[right:], k - right)
+        return nums[k - 1]
