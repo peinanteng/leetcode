@@ -23,7 +23,7 @@ class ValidWordAbbr(object):
             newWord = word
         else:
             newWord = word[0] + str(len(word)-2) + word[-1]
-        if (word in self.dict and self.summary[newWord] > 1) or (word not in self.dict and newWord in self.summary):
+        if (word in self.dict and self.summary[newWord] > 1) or \
+           (word not in self.dict and newWord in self.summary):
                 return False
-        else:
-            return True
+        return True
