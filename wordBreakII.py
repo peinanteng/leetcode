@@ -6,31 +6,18 @@ class Solution(object):
         :rtype: List[str]
         """
         summary = {}
-        self.helper(s, wordDict, summary)
-        return summary[s]
-
-    def helper(self, s, wordDict, summary):
-        if s in summary:
-            return summary[s]
-        res = []
-        for word in wordDict:
-            startIndex = self.findIndex(s, word)
-            if startIndex != 0:
-                continue
-            if len(word) == len(s):
-                res.append(word)
-            else:
-                restList = self.helper(s[len(word):], wordDict, summary)
-                for rest in restList:
-                    res.append(word + " " + rest)
-        summary[s] = res
-        return res
-
-    def findIndex(self, s, word):
-        length = len(word)
-        if length == 0:
-            return -1
-        for i in range(len(s)):
-            if s[i: i + length] == word:
-                return i
-        return -1
+        summary[len(s)] = ['']
+        self.helper(0, s, wordDict, summary)
+        return summary[0]
+    
+    def helper(self, i, s, wordDict, summary):
+        if i not in summary:
+            res = []
+            for j in range(i + 1, len(s) + 1):
+                if s[i : j] in wordDict:
+                    restList = self.helper(j, s, wordDict, summary)
+                    for word in restList:
+                        res.append(s[i : j] + (word and ' ' + word))
+            summary[i] = res
+        return summary[i]
+    
