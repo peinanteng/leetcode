@@ -1,5 +1,5 @@
 class Solution(object):
-
+    import random
     def __init__(self, nums):
         """
         :type nums: List[int]
@@ -11,8 +11,7 @@ class Solution(object):
         Resets the array to its original configuration and return it.
         :rtype: List[int]
         """
-        result = self.nums[:]
-        return result
+        return self.nums[:]
 
     def shuffle(self):
         """
@@ -21,7 +20,6 @@ class Solution(object):
         """
         result = self.reset()
         length = len(result)
-        import random
         for i in range(length - 1, - 1, -1):
             j = random.randint(0, i)
             result[i], result[j] = result[j], result[i]
