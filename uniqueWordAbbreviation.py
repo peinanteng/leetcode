@@ -5,8 +5,8 @@ class ValidWordAbbr(object):
         :type dictionary: List[str]
         """
         self.summary = {}
-        self.dict = set(dictionary)
-        for word in self.dict:
+        self.dictionary = set(dictionary)
+        for word in self.dictionary:
             if len(word) <= 2:
                 self.summary[word] = self.summary.get(word, 0) + 1
             else:
@@ -23,7 +23,7 @@ class ValidWordAbbr(object):
             newWord = word
         else:
             newWord = word[0] + str(len(word)-2) + word[-1]
-        if (word in self.dict and self.summary[newWord] > 1) or \
-           (word not in self.dict and newWord in self.summary):
+        if (word in self.dictionary and self.summary[newWord] > 1) or \
+           (word not in self.dictionary and newWord in self.summary):
                 return False
         return True
