@@ -8,14 +8,13 @@ class Solution(object):
         if m == 1 or n == 1:
             return 1
         matrix = [[0] * n for i in range(m)]
-        x, y = 0, 0
-        while y < n:
+        x = 0
+        for y in range(n):
             matrix[x][y] = 1
-            y += 1
-        x, y = 0, 0
-        while x < m:
+        y = 0
+        for x in range(m):
             matrix[x][y] = 1
-            x += 1
+        
         for x in range(1, m):
             for y in range(1, n):
                 matrix[x][y] = matrix[x - 1][y] + matrix[x][y - 1]
