@@ -6,14 +6,19 @@ class Solution(object):
         """
         edges = sorted(nums, reverse=True)
         ans = 0
-        for index, longest in enumerate(edges):
-            i, j = index + 1, index + 2
-            while j < len(edges) and longest < edges[i] + edges[j]:
+        # assume i is the longest edge
+        for i, length in enumerate(edges):
+            # j, k is other two edges
+            j, k = i + 1, i + 2
+            # find the shortest length for k
+            while k < len(edges) and length < edges[j] + edges[k]:
+                k += 1
+            k -= 1
+            # for every j, when j += 1, find the shortest length for k
+            while j < k:
+                ans += k - j
                 j += 1
-            j -= 1
-            while i < j:
-                ans += j - i
-                i += 1
-                while i < j and edges[i] + edges[j] <= longest:
-                    j -= 1
+                while j < k and edges[j] + edges[k] <= length:
+                    k -= 1
+        # return result
         return ans
