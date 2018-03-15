@@ -16,12 +16,11 @@ class Solution(object):
             return None
         if root.val < p.val:
             return self.inorderSuccessor(root.right, p)
-        elif root.val == p.val:
+        if root.val == p.val:
             return self.findSmallest(root.right)
-        elif self.findLargest(root.left) == p:
+        if self.findLargest(root.left) == p:
             return root
-        else:
-            return self.inorderSuccessor(root.left, p)
+        return self.inorderSuccessor(root.left, p)
     
     def findSmallest(self, root):
         if not root:
