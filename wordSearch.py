@@ -18,11 +18,13 @@ class Solution(object):
             return True
         if i <  0 or i >= len(board) or j < 0 or j >= len(board[0]) or board[i][j] != word[0]:
             return False
-        tpm = board[i][j]
+        curVal = board[i][j]
         board[i][j] = '#'
         flag = 0
-        if self.dfs(board, word[1:], i + 1, j) or self.dfs(board, word[1:], i - 1, j) \
-        or self.dfs(board, word[1:], i, j + 1) or self.dfs(board, word[1:], i, j - 1):
+        if self.dfs(board, word[1:], i + 1, j) \
+        or self.dfs(board, word[1:], i - 1, j) \
+        or self.dfs(board, word[1:], i, j + 1) \
+        or self.dfs(board, word[1:], i, j - 1):
             flag = 1
-        board[i][j] = tpm
+        board[i][j] = curVal
         return flag == 1
