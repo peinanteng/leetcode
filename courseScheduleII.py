@@ -7,9 +7,9 @@ class Solution(object):
         """
         summary = {}
         degree = [0] * numCourses
-        for pair in prerequisites:
-            summary[pair[1]] = summary.get(pair[1], []) + [pair[0]]
-            degree[pair[0]] += 1
+        for x, y in prerequisites:
+            summary[y] = summary.get(y, []) + [x]
+            degree[x] += 1
         queue = []
         for num in range(numCourses):
             if degree[num] == 0:
