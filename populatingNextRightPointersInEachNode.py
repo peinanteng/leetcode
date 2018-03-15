@@ -17,10 +17,7 @@ class Solution:
             newQueue = []
             while queue:
                 node = queue.pop(0)
-                if queue:
-                    node.next = queue[0]
-                else:
-                    node.next = None
+                node.next = queue[0] if queue else None
                 if node.left:
                     newQueue.append(node.left)
                 if node.right:
