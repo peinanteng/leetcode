@@ -6,18 +6,16 @@
 #         self.right = None
 
 class Solution(object):
-    def buildTree(self, preorder, inorder):
+    def buildTree(self, preOrder, inOrder):
         """
         :type preorder: List[int]
         :type inorder: List[int]
         :rtype: TreeNode
         """
-        if len(preorder) == 0:
+        if len(preOrder) == 0:
             return None
-        root = TreeNode(preorder[0])
-        i = 0
-        while inorder[i] != preorder[0]:
-            i += 1
-        root.left = self.buildTree(preorder[1 : i + 1], inorder[:i])
-        root.right = self.buildTree(preorder[i + 1:], inorder[i + 1:])
+        root = TreeNode(preOrder[0])
+        i = inOrder.index(preOrder[0])
+        root.left = self.buildTree(preOrder[1 : i + 1], inOrder[:i])
+        root.right = self.buildTree(preOrder[i + 1:], inOrder[i + 1:])
         return root
