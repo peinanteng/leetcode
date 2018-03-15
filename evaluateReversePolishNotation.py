@@ -6,7 +6,7 @@ class Solution(object):
         """
         stack = []
         for char in tokens:
-            if char not in ('+', '-', '*', '/'):
+            if char not in '+-*/':
                 stack.append(int(char))
             else:
                 num2 = stack.pop()
