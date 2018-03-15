@@ -8,39 +8,33 @@ class Solution(object):
             return
         queue = []
         m, n = len(board), len(board[0])
+        y = [0, n - 1]
         for x in range(m):
-            if board[x][0] == 'O':
-                board[x][0] = 'W'
-                queue.append((x, 0))
-            if board[x][n - 1] == 'O':
-                board[x][n - 1] = 'W'
-                queue.append((x, n - 1))
-
+            for i in range(2):
+                if board[x][y[i]] == 'O':
+                    board[x][y[i]] = 'W'
+                    queue.append((x, y[i]))
+        x = [0, m - 1]
         for y in range(1, n - 1):
-            if board[0][y] == 'O':
-                board[0][y] = 'W'
-                queue.append((0, y))
-            if board[m - 1][y] == 'O':
-                board[m - 1][y] = 'W'
-                queue.append((m - 1, y))
+            for i in range(2):
+                if board[x[i]][y] == 'O':
+                    board[x[i]][y] = 'W'
+                    queue.append((x[i], y))
+        dx = [-1, 1, 0, 0]
+        dy = [0, 0, -1, 1]
         while queue:
-            pair = queue.pop()
+            pair = queue.pop(0)
             x, y = pair[0], pair[1]
-            if x > 0 and board[x - 1][y] == 'O':
-                board[x-1][y] = 'W'
-                queue.append((x - 1, y))
-            if x < m - 1 and board[x + 1][y] == 'O':
-                board[x+1][y] = 'W'
-                queue.append((x + 1, y))
-            if y > 0 and board[x][y - 1] == 'O':
-                board[x][y-1] = 'W'
-                queue.append((x, y - 1))
-            if y < n - 1 and board[x][y + 1] == 'O':
-                board[x][y+1] = 'W'
-                queue.append((x, y + 1))
+            for i in range(4):
+                newX, newY = x + dx[i], y + dy[i]
+                if newX >= 0 and newX < m and newY >= 0 and newY < n and board[newX][newY] == 'O':
+                    board[newX][newY] = 'W'
+                    queue.append((newX, newY))
         for x in range(m):
             for y in range(n):
                 if board[x][y] == 'O':
                     board[x][y] = 'X'
-                if board[x][y] == 'W':
+                elif board[x][y] == 'W':
                     board[x][y] = 'O'
+                
+                
