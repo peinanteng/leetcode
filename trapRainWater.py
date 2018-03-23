@@ -4,21 +4,22 @@ class Solution(object):
         :type height: List[int]
         :rtype: int
         """
-        left = []
-        leftVal = 0
-        for i in range(len(height)):
-            leftVal = max(leftVal, height[i])
-            left.append(leftVal)
-        
-        left.reverse()
-        
-        newheight = height[:]
-        newheight.reverse()
-        
-        water = 0
-        rightVal = 0
-        for i in range(len(newheight)):
-            rightVal = max(rightVal, newheight[i])
-            water += min(rightVal, left[i]) - newheight[i]
-        return water
-        
+        left, right = 0, len(height) - 1
+        res = 0
+        if left > right:
+            return res
+        leftHeight, rightHeight = height[left], height[right]
+        while left < right:
+            if leftHeight < rightHeight:
+                left += 1
+                if leftHeight > height[left]:
+                    res += leftHeight - height[left]
+                else:
+                    leftHeight = height[left]
+            else:
+                right -= 1
+                if rightHeight > height[right]:
+                    res += rightHeight - height[right]
+                else:
+                    rightHeight = height[right]
+        return res
