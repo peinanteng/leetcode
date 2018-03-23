@@ -12,10 +12,11 @@ class Trie:
             return
         node = self.root
         for letter in word:
-            if node.childs[ord(letter) - ord('a')] is None:
+            k = ord(letter) - ord('a')
+            if node.childs[k] is None:
                 new_node = TrieNode()
-                node.childs[ord(letter) - ord('a')] = new_node
-            node = node.childs[ord(letter) - ord('a')]
+                node.childs[k] = new_node
+            node = node.childs[k]
         node.leaf = True
                 
     def search(self, word):
@@ -26,17 +27,16 @@ class Trie:
     def searchHelp(self, word, node, i):
         if len(word) == i:
             return node.leaf
-        result = False
         if word[i] == '.':
             for j in range(26):
                 if node.childs[j]:
                     if self.searchHelp(word, node.childs[j], i + 1):
-                        result = True
-        else:
-            if node.childs[ord(word[i]) - ord('a')]:
-                if self.searchHelp(word, node.childs[ord(word[i]) - ord('a')], i + 1):
-                    result = True
-        return result
+                        return True
+        j = ord(word[i]) - ord('a') 
+        if node.childs[j]:
+            if self.searchHelp(word, node.childs[j], i + 1):
+                    return True
+        return False
             
                 
 class WordDictionary:
