@@ -11,7 +11,6 @@ class Trie(object):
         """
         self.root = TrieNode()
         
-
     def insert(self, word):
         """
         Inserts a word into the trie.
@@ -27,7 +26,6 @@ class Trie(object):
             node = child
         node.isWord = True
         
-
     def search(self, word):
         """
         Returns if the word is in the trie.
@@ -41,8 +39,6 @@ class Trie(object):
                 return False
         return node.isWord
             
-        
-
     def startsWith(self, prefix):
         """
         Returns if there is any word in the trie that starts with the given prefix.
