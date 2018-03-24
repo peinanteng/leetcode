@@ -1,3 +1,4 @@
+from collections import deque
 class Solution(object):
     def solve(self, board):
         """
@@ -6,7 +7,7 @@ class Solution(object):
         """
         if not board:
             return
-        queue = []
+        queue = deque([])
         m, n = len(board), len(board[0])
         y = [0, n - 1]
         for x in range(m):
@@ -23,8 +24,7 @@ class Solution(object):
         dx = [-1, 1, 0, 0]
         dy = [0, 0, -1, 1]
         while queue:
-            pair = queue.pop(0)
-            x, y = pair[0], pair[1]
+            x, y = queue.popleft()
             for i in range(4):
                 newX, newY = x + dx[i], y + dy[i]
                 if newX >= 0 and newX < m and newY >= 0 and newY < n and board[newX][newY] == 'O':
@@ -36,5 +36,5 @@ class Solution(object):
                     board[x][y] = 'X'
                 elif board[x][y] == 'W':
                     board[x][y] = 'O'
-                
+
                 
