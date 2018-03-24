@@ -39,19 +39,19 @@ class Codec:
             return None
         root = TreeNode(data[0])
         dq = deque([root])
-        index = 0
+        i = 0
         while dq:
             node = dq.popleft()
-            left, right = index + 1, index + 2
+            left, right = i + 1, i + 2
             if left < len(data):
-                index += 1
+                i += 1
                 if data[left] == '#':
                     node.left = None
                 else:
                     node.left = TreeNode(data[left])
                     dq.append(node.left)
             if right < len(data):
-                index += 1
+                i += 1
                 if data[right] == '#':
                     node.right = None
                 else:
