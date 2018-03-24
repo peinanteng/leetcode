@@ -8,10 +8,7 @@ class Solution(object):
         """
         summary = {}
         for i in range(len(ppid)):
-            if ppid[i] in summary:
-                summary[ppid[i]].append(pid[i])
-            else:
-                summary[ppid[i]] = [pid[i]]
+            summary[ppid[i]] = summary.get(ppid[i], []) + [pid[i]]
         res = []
         stack = [kill]
         while stack:
