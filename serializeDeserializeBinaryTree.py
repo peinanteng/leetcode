@@ -5,6 +5,7 @@
 #         self.left = None
 #         self.right = None
 
+from collections import deque
 class Codec:
 
     def serialize(self, root):
@@ -16,7 +17,6 @@ class Codec:
         res = []
         if not root:
             return res
-        from collections import deque
         dq = deque([root])
         while dq:
             node = dq.popleft()
@@ -38,7 +38,6 @@ class Codec:
         if len(data) == 0:
             return None
         root = TreeNode(data[0])
-        from collections import deque
         dq = deque([root])
         index = 0
         while dq:
@@ -59,4 +58,3 @@ class Codec:
                     node.right = TreeNode(data[right])
                     dq.append(node.right)
         return root
-        
