@@ -1,14 +1,13 @@
+from collections import deque
 class Solution(object):
     def jump(self, nums):
         """
         :type nums: List[int]
         :rtype: int
         """
-        from collections import deque
         dq = deque([(0,0)])
         while dq:
-            item = dq.popleft()
-            startIndex, s = item[0], item[1]
+            startIndex, s = dq.popleft()
             i = startIndex + 1
             if dq:
                 lastItem = dq.pop()
