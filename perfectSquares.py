@@ -1,3 +1,4 @@
+from collections import deque
 class Solution(object):
     def numSquares(self, n):
         """
@@ -6,7 +7,6 @@ class Solution(object):
         """
         if self.isPerfectSquare(n):
             return 1
-        from collections import deque
         dq = deque([[n]])
         while dq:
             nums = dq.popleft()
