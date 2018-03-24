@@ -5,21 +5,21 @@
 #         self.left = None
 #         self.right = None
 #         self.next = None
-
+from collections import deque
 class Solution:
     # @param root, a tree link node
     # @return nothing
     def connect(self, root):
-        queue = []
-        if root:
-            queue.append(root)
-        while queue:
-            newQueue = []
-            while queue:
-                node = queue.pop(0)
-                node.next = queue[0] if queue else None
+        if not root:
+            return
+        dq = deque([root])
+        while dq:
+            newQueue = deque([])
+            while dq:
+                node = dq.popleft()
+                node.next = dq[0] if dq else None
                 if node.left:
                     newQueue.append(node.left)
                 if node.right:
                     newQueue.append(node.right)
-            queue = newQueue
+            dq = newQueue
