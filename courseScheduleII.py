@@ -1,3 +1,4 @@
+from collections import deque
 class Solution(object):
     def findOrder(self, numCourses, prerequisites):
         """
@@ -10,13 +11,13 @@ class Solution(object):
         for x, y in prerequisites:
             summary[y] = summary.get(y, []) + [x]
             degree[x] += 1
-        queue = []
+        queue = deque([])
         for num in range(numCourses):
             if degree[num] == 0:
                 queue.append(num)
         res = []
         while queue:
-            node = queue.pop(0)
+            node = queue.popleft()
             res.append(node)
             if node in summary:
                 for course in summary[node]:
