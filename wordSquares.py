@@ -1,4 +1,10 @@
-      summary = {}
+class Solution(object):
+    def wordSquares(self, words):
+        """
+        :type words: List[str]
+        :rtype: List[List[str]]
+        """
+        summary = {}
         for word in words:
             for i in range(len(word)):
                 summary[word[:i + 1]] = summary.get(word[:i + 1], []) + [word]
@@ -14,9 +20,9 @@
             return
         if row > len(cur[0]):
             return
-        str = ''
+        s = ''
         for word in cur:
-            str += word[row]
-        if str in summary:
-            for word in summary[str]:
+            s += word[row]
+        if s in summary:
+            for word in summary[s]:
                 self.dfs(summary, cur + [word], res, row + 1)
