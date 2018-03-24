@@ -18,8 +18,7 @@ class Solution(object):
         res = [[] for _ in range(i + 1)]
         dq = deque([[i, root]])
         while dq:
-            item = dq.popleft()
-            j, node = item[0], item[1]
+            j, node = dq.popleft()
             if j >= len(res):
                 res.append([node.val])
             else:
