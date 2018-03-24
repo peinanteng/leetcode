@@ -12,26 +12,27 @@ class Solution(object):
         :rtype: RandomListNode
         """
         if not head:
-            return None
-        newHead = RandomListNode(head.label)
-        summary = {}
-        summary[head] = newHead
-        p = head
-        q = newHead
-        while p:
-            q.random = p.random
-            if p.next:
-                q.next = RandomListNode(p.next.label)
-                summary[p.next] = q.next
-            else:
-                q.next = None
-            p = p.next
-            q = q.next
-        q = newHead
-        while q:
-            if q.random:
-                q.random = summary[q.random]
-            q = q.next
+            return head
+        node = head
+        while node:
+            nextNode = node.next
+            node.next = RandomListNode(node.label)
+            node.next.next = nextNode
+            node = nextNode
+        node = head
+        while node:
+            node.next.random = node.random.next if node.random else None
+            node = node.next.next
+        newHead = head.next
+        node1, node2 = head, newHead
+        cur = node1.next.next
+        while cur:
+            node1.next = cur
+            node2.next = cur.next
+            node1 = node1.next
+            node2 = node2.next
+            cur = cur.next.next
+        node1.next = None
         return newHead
                 
           
