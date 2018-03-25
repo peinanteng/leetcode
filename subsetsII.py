@@ -1,16 +1,20 @@
-class Solution():
-    def SubsetsII(self, nums):
+class Solution(object):
+    def subsetsWithDup(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        res = []
         nums.sort()
-        self.res = []
-        self.dfs(nums, [], 0)
-        return self.res
-    def dfs(self, nums, curpath, startIndex):
+        self.helper(nums, [], 0, res)
+        return res
+    
+    def helper(self, nums, cur, startIndex, res):
         if startIndex == len(nums):
-            self.res.append(curpath)
+            res.append(cur)
             return
-        nextIndex = startIndex + 1
-        while nextIndex < len(nums) and nums[nextIndex] == nums[nextIndex - 1]:
-            nextIndex += 1
-        self.dfs(nums, curpath + [nums[startIndex]], startIndex + 1)
-        self.dfs(nums, curpath, nextIndex)
-
+        i = startIndex + 1
+        while i < len(nums) and nums[i] == nums[i - 1]:
+            i += 1
+        self.helper(nums, cur, i, res)
+        self.helper(nums, cur + [nums[startIndex]], startIndex + 1, res)
